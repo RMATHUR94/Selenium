@@ -33,7 +33,7 @@ public class Ass3 {
 		 driver.findElement(By.id("okayBtn")).click();
 		 
 		 WebElement option = driver.findElement(By.xpath("//select[@class='form-control']"));
-		 Select dropdown = new Select(option);
+		 Select dropdown = new Select(option); //select class //
 		 dropdown.selectByValue("consult");
 		 
 		 driver.findElement(By.id("terms")).click();
