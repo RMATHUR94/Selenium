@@ -15,7 +15,7 @@ public class Ass6 {
 		//c. enter step 2 grabbed lebel text into alert textbox.
 		//5. click alert and then verify if text present in step 2 is present in the pop-up msg.
 		// DO NOT HARDCODE THE LABEL PART // 
-		System.setProperty("webdriver.chrome.driver","/home/vyrazu-66/Downloads/chromedriver_linux64 (1)/chromedriver");
+		 System.setProperty("webdriver.chrome.driver","/home/vyrazu-66/Downloads/chromedriver_linux64 (2)/chromedriver");
         
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");

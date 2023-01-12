@@ -11,7 +11,7 @@ public class calendarAnother {
 	public static void main(String[] args) throws Exception
 	{
 
-	    System.setProperty("webdriver.chrome.driver","/home/vyrazu-66/Downloads/chromedriver_linux64 (1)/chromedriver");
+	    System.setProperty("webdriver.chrome.driver","/home/vyrazu-66/Downloads/chromedriver_linux64 (2)/chromedriver");
 	    WebDriver driver = new ChromeDriver();  
 	    driver.get("https://www.path2usa.com/travel-companions");
 
