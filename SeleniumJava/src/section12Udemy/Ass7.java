@@ -20,11 +20,19 @@ public class Ass7 {
 	    driver.get("https://rahulshettyacademy.com/AutomationPractice/");
 	    driver.manage().window().maximize();
 	    JavascriptExecutor js = (JavascriptExecutor) driver;
+	    js.executeScript("window.scrollBy(0,450)");
 		
-	    List <WebElement> table = driver.findElements(By.xpath("//div[@class='left-align']//table[@id='product']"));
-	   
+	    WebElement table = driver.findElement(By.id("product"));
 	    
+	    System.out.println(table.findElements(By.tagName("tr")).size());
+	    
+	    System.out.println(table.findElements(By.tagName("tr")).get(0).findElements(By.tagName("th")).size());
+	    
+	   	List<WebElement> secondrow = table.findElements(By.tagName("tr")).get(2).findElements(By.tagName("td"));   
 		
+	   	System.out.println(secondrow.get(0).getText());
+	   	System.out.println(secondrow.get(1).getText());
+	   	System.out.println(secondrow.get(2).getText());
 	}
 
 }
