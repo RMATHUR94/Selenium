@@ -41,10 +41,21 @@ public class class115 {
      //compare both original and sorted list return boolean value that list is sorted or not  
        Assert.assertTrue(originalList.equals(sortedList));
        
-    //scan the name column with getText ->Rice->Print the price of the veggies
+       List<Object> price;
+    //scan the name column with getText ->Rice->Print the price of the Rice
+      do
+      {
+         List<WebElement> rows = driver.findElements(By.xpath("//tr/td[1]"));    
        
-      List<Object> price = elementList.stream().filter(s->s.getText().contains("Beans")).map(s->getPriceVeggie(s)).collect(Collectors.toList());
-      price.forEach(a->System.out.println(a));
+         price = rows.stream().filter(s->s.getText().contains("Rice")).map(s->getPriceVeggie(s)).collect(Collectors.toList());
+       
+         price.forEach(a->System.out.println(a));
+         if(price.size()<1)
+         {
+        	 driver.findElement(By.cssSelector("[aria-label='Next']")).click();
+         }
+      }
+         while(price.size()<1);
 	}
 
 	private static Object getPriceVeggie(WebElement s) 
@@ -52,7 +63,8 @@ public class class115 {
 		String beansprice = s.findElement(By.xpath("following-sibling::td[1]")).getText();
 		return beansprice;
 	}
-
+   
+	
 }
 
 
