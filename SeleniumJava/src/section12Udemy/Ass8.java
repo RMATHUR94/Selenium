@@ -10,7 +10,7 @@ public class Ass8 {
 	public static void main(String[] args) throws Exception
 	{
 		// handeling auto-suggestive drop-down and fetching its value in the eclipse console.
-		System.setProperty("webdriver.chrome.driver","/home/vyrazu-66/Downloads/chromedriver_linux64 (2)/chromedriver");
+		System.setProperty("webdriver.chrome.driver","/home/vyrazu-66/Downloads/chromedriver_linux64 (3)/chromedriver");
 	    WebDriver driver = new ChromeDriver();
 		driver.get("https://www.rahulshettyacademy.com/AutomationPractice/");
 	    driver.manage().window().maximize();
