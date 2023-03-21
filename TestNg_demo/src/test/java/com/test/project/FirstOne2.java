@@ -16,9 +16,8 @@ import org.testng.Assert;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.netty.util.internal.SystemPropertyUtil;
-import rsacademy.pageobject.LandingPage;
 
-public class FirstOne {
+public class FirstOne2 {
 
 	public static void main(String[] args) throws Exception
 	{
@@ -27,18 +26,14 @@ public class FirstOne {
 	    ChromeOptions chromeOptions = new ChromeOptions();
 		 chromeOptions.addArguments("--remote-allow-origins=*");
 		WebDriver driver = new ChromeDriver(chromeOptions);
-		LandingPage landingPage = new LandingPage(driver);
-		
 	   driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//	   driver.get("https://rahulshettyacademy.com/client/");
+	   driver.get("https://rahulshettyacademy.com/client/");
 	   driver.manage().window().maximize();
 	   driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-//	   driver.findElement(By.id("userEmail")).sendKeys("rahul.mathur@vyrazu.com");
-//	   driver.findElement(By.id("userPassword")).sendKeys("R@hul456");
-//	   driver.findElement(By.id("login")).click();
+	   driver.findElement(By.id("userEmail")).sendKeys("rahul.mathur@vyrazu.com");
+	   driver.findElement(By.id("userPassword")).sendKeys("R@hul456");
+	   driver.findElement(By.id("login")).click();
 //	   String prodOne = "ZARA COAT 3";
-	   landingPage.goTo();
-	   landingPage.loginApplication("rahul.mathur@vyrazu.com","R@hul456");
 	   String prodTwo = "IPHONE 13 PRO";
 	   WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
