@@ -19,7 +19,7 @@ import io.netty.util.internal.SystemPropertyUtil;
 
 public class FirstOne2 {
 
-	public static void main(String[] args) throws Exception
+	public static void main(String[] args) 
 	{
 	
 	    WebDriverManager.chromiumdriver().setup();
@@ -61,9 +61,9 @@ public class FirstOne2 {
 	  //ng-animating
 	  wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".ng-animating")))); 
 	  
-//      wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[routerlink*='cart']")));
-      Thread.sleep(2000);
-	  JavascriptExecutor js = (JavascriptExecutor) driver;
+      wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[routerlink*='cart']")));
+
+      JavascriptExecutor js = (JavascriptExecutor) driver;
 	  WebElement element = driver.findElement(By.cssSelector("[routerlink*='cart']"));
       js.executeScript("arguments[0].click()", element);
        

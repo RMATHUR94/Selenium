@@ -17,6 +17,7 @@ import org.testng.Assert;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.netty.util.internal.SystemPropertyUtil;
 import rsacademy.pageobject.LandingPage;
+import rsacademy.pageobject.ProductCatalogue;
 
 public class FirstOne {
 
@@ -36,38 +37,47 @@ public class FirstOne {
 //	   driver.findElement(By.id("userEmail")).sendKeys("rahul.mathur@vyrazu.com");
 //	   driver.findElement(By.id("userPassword")).sendKeys("R@hul456");
 //	   driver.findElement(By.id("login")).click();
-//	   String prodOne = "ZARA COAT 3";
+       String prodOne = "ZARA COAT 3";
+       String prodTwo = "IPHONE 13 PRO";
 	   landingPage.goTo();
 	   landingPage.loginApplication("rahul.mathur@vyrazu.com","R@hul456");
-	   String prodTwo = "IPHONE 13 PRO";
-	   WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-
-	   wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb-3")));
-	  
-	   List<WebElement> products = driver.findElements(By.cssSelector(".mb-3"));
-      //for selection of ZARA COART	   
-	  WebElement prod = products.stream().filter(product-> product.findElement(By.cssSelector("b")).getText().equals("ZARA COAT 3")).findAny().orElse(null);
-	  prod.findElement(By.cssSelector(".card-body button:last-of-type")).click();
-	  
-	//wait until toast container
-	  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toast-container")));
-	 
-	  //ng-animating
-	  wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".ng-animating"))));
+	   ProductCatalogue ProductCatalogue = new ProductCatalogue(driver);
+	   ProductCatalogue.addTocart(prodOne);
+	   ProductCatalogue.addTocart(prodTwo);
+	   
+	   
+//	   List <WebElement> products = ProductCatalogue.getPoductsList();
+//	   WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+//
+//	   wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb-3")));
+//	  
+//	   List<WebElement> products = driver.findElements(By.cssSelector(".mb-3"));
+//      	   //for selection of ZARA COART	   
+//	  WebElement prod = products.stream().filter(product-> product.findElement(By.cssSelector("b")).getText().equals("ZARA COAT 3")).findAny().orElse(null);
+//	  prod.findElement(By.cssSelector(".card-body button:last-of-type")).click();
+//	    
+//	 //wait until toast container
+//	  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toast-container")));
+//	 
+//	  //ng-animating
+//	  wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".ng-animating"))));
      
-	  //FOR SELECTION OF IPHONE
-	  WebElement prod2 = products.stream().filter(product-> product.findElement(By.cssSelector("b")).getText().equals(prodTwo)).findAny().orElse(null);
-	  
-	  prod2.findElement(By.cssSelector(".card-body button:last-of-type")).click();  
-	  //wait until toast container
-	  
-	  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toast-container")));
-	  
-	  //ng-animating
-	  wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".ng-animating")))); 
-	  
-//      wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[routerlink*='cart']")));
-      Thread.sleep(2000);
+	   
+	   
+	   
+//	  //FOR SELECTION OF IPHONE
+//	  WebElement prod2 = products.stream().filter(product-> product.findElement(By.cssSelector("b")).getText().equals(prodTwo)).findAny().orElse(null);
+//	  
+//	  prod2.findElement(By.cssSelector(".card-body button:last-of-type")).click();  
+//	  //wait until toast container
+//	  
+//	  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toast-container")));
+//	  
+//	  //ng-animating
+//	  wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".ng-animating")))); 
+//	  
+//      wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[routerlink*='cart']")));
+      
 	  JavascriptExecutor js = (JavascriptExecutor) driver;
 	  WebElement element = driver.findElement(By.cssSelector("[routerlink*='cart']"));
       js.executeScript("arguments[0].click()", element);
@@ -78,6 +88,7 @@ public class FirstOne {
       System.out.println(match);
       Assert.assertTrue(match);
      //clicking check out using javascript executor.
+      
       WebElement  checkout = driver.findElement(By.cssSelector(".totalRow button"));
 
       JavascriptExecutor js1 = (JavascriptExecutor) driver;
@@ -86,8 +97,8 @@ public class FirstOne {
       
       Actions a = new Actions(driver);
       a.sendKeys(driver.findElement(By.cssSelector("[placeholder='Select Country']")), "india").build().perform();
-  
-      wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ta-results")));
+//  
+//      wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ta-results")));
 
       driver.findElement(By.xpath("(//button[contains(@class,'ta-item')])[2]")).click();
 

@@ -17,7 +17,7 @@ public class LandingPage extends AbstractComponents
     	super(driver);
     	//initialization
     	this.driver =driver;
-    	PageFactory.initElements(driver, this);
+    	
     }
     
    //driver.findElement(By.id("userEmail")).sendKeys("rahul.mathur@vyrazu.com");
