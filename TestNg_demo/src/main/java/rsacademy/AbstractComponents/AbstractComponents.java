@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,10 +38,19 @@ public class AbstractComponents
 		  WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 		  wait.until(ExpectedConditions.invisibilityOf(ele));
 	}
+//	public void waitForthElementToclickable(WebElement cartHeader2)
+//	{
+//		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+//		wait.until(ExpectedConditions.elementToBeClickable(cartHeader2));
+//	}
 	  
-	public void goToCart()
+	public void goToCartPage()
 	{
-		cartHeader.click();
+
+		  JavascriptExecutor js = (JavascriptExecutor) driver;
+	//WebElement element = driver.findElement(By.cssSelector("[routerlink*='cart']"));
+	      js.executeScript("arguments[0].click()", cartHeader);
+//		  cartHeader.click();
 	}
 
 	

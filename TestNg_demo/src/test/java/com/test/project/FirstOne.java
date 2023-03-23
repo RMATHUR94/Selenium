@@ -16,6 +16,7 @@ import org.testng.Assert;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.netty.util.internal.SystemPropertyUtil;
+import rsacademy.pageobject.CartPage;
 import rsacademy.pageobject.LandingPage;
 import rsacademy.pageobject.ProductCatalogue;
 
@@ -42,9 +43,21 @@ public class FirstOne {
 	   landingPage.goTo();
 	   landingPage.loginApplication("rahul.mathur@vyrazu.com","R@hul456");
 	   ProductCatalogue ProductCatalogue = new ProductCatalogue(driver);
-	   ProductCatalogue.addTocart(prodOne);
+	   //ProductCatalogue.addTocart(prodOne);
 	   ProductCatalogue.addTocart(prodTwo);
+	   ProductCatalogue.goToCartPage(); 
 	   
+	    
+	   
+//clicking check out using javascript executor on cart button on header.
+	      JavascriptExecutor js = (JavascriptExecutor) driver;
+//	 	  WebElement element = driver.findElement(By.cssSelector("[routerlink*='cart']"));
+//	      js.executeScript("arguments[0].click()", element);
+	   
+       CartPage CartPage = new CartPage(driver);
+	   Boolean match = CartPage.VerifyProductDisplay(prodTwo);
+	   Assert.assertTrue(match);
+	   CartPage.goTocheckout();
 	   
 //	   List <WebElement> products = ProductCatalogue.getPoductsList();
 //	   WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -77,28 +90,24 @@ public class FirstOne {
 //	  wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".ng-animating")))); 
 //	  
 //      wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[routerlink*='cart']")));
-      
-	  JavascriptExecutor js = (JavascriptExecutor) driver;
-	  WebElement element = driver.findElement(By.cssSelector("[routerlink*='cart']"));
-      js.executeScript("arguments[0].click()", element);
+//   
        
-      List <WebElement> cartProducts = driver.findElements(By.cssSelector(".cartSection h3"));
+//      List <WebElement> cartProducts = driver.findElements(By.cssSelector(".cartSection h3"));
+//      
+//      Boolean match = cartProducts.stream().anyMatch(cartProduct->cartProduct.getText().equalsIgnoreCase(prodTwo));
+//      //System.out.println(match);
+//      Assert.assertTrue(match);
       
-      Boolean match = cartProducts.stream().anyMatch(cartProduct->cartProduct.getText().equalsIgnoreCase(prodTwo));
-      System.out.println(match);
-      Assert.assertTrue(match);
-     //clicking check out using javascript executor.
-      
-      WebElement  checkout = driver.findElement(By.cssSelector(".totalRow button"));
+      //WebElement  checkout = driver.findElement(By.cssSelector(".totalRow button"));
 
-      JavascriptExecutor js1 = (JavascriptExecutor) driver;
-
-      js.executeScript("arguments[0].click();", checkout);
+//      JavascriptExecutor js1 = (JavascriptExecutor) driver;
+//
+//      js.executeScript("arguments[0].click();", checkout);
       
       Actions a = new Actions(driver);
       a.sendKeys(driver.findElement(By.cssSelector("[placeholder='Select Country']")), "india").build().perform();
 //  
-//      wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ta-results")));
+//    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ta-results")));
 
       driver.findElement(By.xpath("(//button[contains(@class,'ta-item')])[2]")).click();
 
