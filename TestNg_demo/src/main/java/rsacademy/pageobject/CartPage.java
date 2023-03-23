@@ -32,12 +32,15 @@ public class CartPage extends AbstractComponents
 		return match;
 	}
 	
-	public void goTocheckout()
+	public checkoutPage goTocheckout()
 	{
 		checkoutEle.click();
+		
+		return new checkoutPage(driver);
 	}
 
 }
+
 //List <WebElement> cartProducts = driver.findElements(By.cssSelector(".cartSection h3"));
 //
 //Boolean match = cartProducts.stream().anyMatch(cartProduct->cartProduct.getText().equalsIgnoreCase(prodTwo));

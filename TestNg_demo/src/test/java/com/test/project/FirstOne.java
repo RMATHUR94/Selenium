@@ -17,8 +17,10 @@ import org.testng.Assert;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.netty.util.internal.SystemPropertyUtil;
 import rsacademy.pageobject.CartPage;
+import rsacademy.pageobject.ConfirmationPage;
 import rsacademy.pageobject.LandingPage;
 import rsacademy.pageobject.ProductCatalogue;
+import rsacademy.pageobject.checkoutPage;
 
 public class FirstOne {
 
@@ -50,14 +52,16 @@ public class FirstOne {
 	    
 	   
 //clicking check out using javascript executor on cart button on header.
-	      JavascriptExecutor js = (JavascriptExecutor) driver;
+//	      JavascriptExecutor js = (JavascriptExecutor) driver;
 //	 	  WebElement element = driver.findElement(By.cssSelector("[routerlink*='cart']"));
 //	      js.executeScript("arguments[0].click()", element);
 	   
        CartPage CartPage = new CartPage(driver);
 	   Boolean match = CartPage.VerifyProductDisplay(prodTwo);
 	   Assert.assertTrue(match);
-	   CartPage.goTocheckout();
+	   checkoutPage CheckoutPage = CartPage.goTocheckout();
+	   CheckoutPage.selectCountry("india");
+	   ConfirmationPage ConfirmationPage = CheckoutPage.submitOrder();
 	   
 //	   List <WebElement> products = ProductCatalogue.getPoductsList();
 //	   WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -103,22 +107,20 @@ public class FirstOne {
 //      JavascriptExecutor js1 = (JavascriptExecutor) driver;
 //
 //      js.executeScript("arguments[0].click();", checkout);
-      
-      Actions a = new Actions(driver);
-      a.sendKeys(driver.findElement(By.cssSelector("[placeholder='Select Country']")), "india").build().perform();
-//  
+    //-----===-------//  
+//     Actions a = new Actions(driver);
+//      a.sendKeys(driver.findElement(By.cssSelector("[placeholder='Select Country']")), "india").build().perform();
+ 
 //    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ta-results")));
+//
+//      driver.findElement(By.xpath("(//button[contains(@class,'ta-item')])[2]")).click();
 
-      driver.findElement(By.xpath("(//button[contains(@class,'ta-item')])[2]")).click();
-
-      driver.findElement(By.cssSelector(".btnn")).click();
+//      driver.findElement(By.cssSelector(".btnn")).click(); //another locator for placeorder = .action__submit
       
-      String text=driver.findElement(By.cssSelector(".hero-primary")).getText();
-
+      String text=ConfirmationPage.getConfirmationMessage();
       System.out.println(text);
-
       Assert.assertEquals(text, "THANKYOU FOR THE ORDER.");
-      driver.close();
+      //driver.close();
 
 
 
