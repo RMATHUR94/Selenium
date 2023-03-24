@@ -1,4 +1,4 @@
-package com.test.project;
+package com.test.project.TestMain;
 
 import java.time.Duration;
 import java.util.List;
