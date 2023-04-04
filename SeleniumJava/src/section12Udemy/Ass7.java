@@ -15,7 +15,7 @@ public class Ass7 {
 		// Number of rows present in the table.
 		// Number of column present in the table.
         // data of second table in the row.
-		System.setProperty("webdriver.chrome.driver","/home/vyrazu-66/Downloads/chromedriver_linux64 (2)/chromedriver");
+		System.setProperty("webdriver.chrome.driver","/home/vyrazu-66/Downloads/chromedriver_linux64 (3) (1)/chromedriver");
 	    WebDriver driver = new ChromeDriver();
 	    driver.get("https://rahulshettyacademy.com/AutomationPractice/");
 	    driver.manage().window().maximize();
@@ -36,3 +36,4 @@ public class Ass7 {
 	}
 
 }
+///home/vyrazu-66/Downloads/chromedriver_linux64 (3) (1)/chromedriver
