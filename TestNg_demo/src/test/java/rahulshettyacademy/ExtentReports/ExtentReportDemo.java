@@ -32,8 +32,8 @@ public class ExtentReportDemo {
 
 		ExtentTest test = extent.createTest("Initial Demo");
 		System.setProperty("webdriver.chrome.driver",
-				"/home/vyrazu-66/Downloads/chromedriver_linux64 (3) (1)/chromedriver");
-
+				"/home/vyrazu-66/Downloads/chromedriver_linux64/chromedriver.exe");
+		
 		ChromeOptions chromeOptions = new ChromeOptions();
 		chromeOptions.addArguments("--start-maximized");
 		chromeOptions.addArguments("--remote-allow-origins=*");

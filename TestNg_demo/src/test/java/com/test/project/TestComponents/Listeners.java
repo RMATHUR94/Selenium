@@ -1,5 +1,7 @@
 package com.test.project.TestComponents;
 
+import java.io.IOException;
+
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -30,7 +32,14 @@ public class Listeners extends BaseTest implements ITestListener{
 	public void onTestFailure(ITestResult result) {
 		
 	   test.fail(result.getThrowable());
-	   test.addScreenCaptureFromPath(null, null);
+	   String filePath = null;
+	try {
+		filePath = GetScreenshot(result.getMethod().getMethodName(), driver);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	   test.addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
 		//screenshot
 	}
 
@@ -60,8 +69,7 @@ public class Listeners extends BaseTest implements ITestListener{
 
 	@Override
 	public void onFinish(ITestContext context) {
-		// TODO Auto-generated method stub
-		ITestListener.super.onFinish(context);
+		extent.flush();
 	}
 
 	@Override

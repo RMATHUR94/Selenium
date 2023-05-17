@@ -1,10 +1,14 @@
 package com.test.project.TestComponents;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -14,7 +18,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class BaseTest {
     WebDriver driver;
     
-	public void initializeDriver() throws IOException
+	public String initializeDriver() throws IOException
 	{
 		    //properties
 		     
@@ -44,6 +48,15 @@ public class BaseTest {
 //			   driver.get("https://rahulshettyacademy.com/client/");
 			   driver.manage().window().maximize();
 			   driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+			return browserName;
 	}
 	
+	public String GetScreenshot(String testCaseName, WebDriver driver) throws IOException
+	{
+	 TakesScreenshot ts = (TakesScreenshot)driver;
+	 File source = ts.getScreenshotAs(OutputType.FILE);
+	 File file = new File(System.getProperty("user.dir")+"//reports//"+ testCaseName+".png");
+	 FileUtils.copyFile(source, file);
+	 return System.getProperty("user.dir")+"//reports//"+ testCaseName+".png";
+	}
 }
